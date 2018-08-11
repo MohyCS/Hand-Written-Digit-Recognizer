@@ -1,5 +1,5 @@
 import tensorflow as tf
-import numpy as np
+#import numpy as np
 import os
 from tensorflow.examples.tutorials.mnist import input_data
 import matplotlib.pyplot as plt
@@ -41,9 +41,6 @@ class build_train:
         y = tf.nn.softmax(tf.matmul(x, W1) + b1, name='op_y')
 
 
-
-
-
         # LOSS FUNCTION, PREDICTION FUNCTION, ACCURACY FUNCTIONS
         # MAKE SURE ACCURCY FUNCTION IS NAMED ---name='op_accuracy'----
         '''
@@ -59,7 +56,7 @@ class build_train:
         ############# CONSTRUCT TRAINING FUNCTION ##########################
 
         # TRAINING FUNCTION SHOULD USE YOUR LOSS FUNCTION TO OPTIMIZE THE MODEL PARAMETERS
-        train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy, name='op_train')
+        train_step = tf.train.GradientDescentOptimizer(1.0).minimize(cross_entropy, name='op_train')
 
         ############## YOUR TRAINING FUNCTION GOES HERE ###############################################################
         ############## YOUR TRAINING FUNCTION GOES HERE ###############################################################
@@ -84,24 +81,12 @@ class build_train:
         train_eval = []
         val_eval = []
         test_eval = []
-        
 
-
-
-                #print('Accuracy train:')
-                #batch_xs, batch_ys = mnist.train.next_batch(100)  
-                #print(sess.run(accuracy, feed_dict={x: batch_xs, y_: batch_ys}))
-
-
-
-
-
-
-        for i in range(0,500):                              #for report do like 1000, higher than this doesnt help
+        for i in range(0,1000): #for report do like 1000, higher than this doesnt help
             print('Train Iteration' + str(i))
             batch_xs, batch_ys = mnist.train.next_batch(100)
             sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
-            if i % 100 == 1:
+            if i % 50 == 1:
                 print('Accuracy train:')
                 batch_xs, batch_ys = mnist.train.next_batch(100) 
                 out1 = sess.run(accuracy, feed_dict={x:batch_xs, y_:batch_ys})
@@ -133,7 +118,7 @@ class build_train:
 
         #add a legend
         #plt.plot(time, train_eval,'b', time, val_eval,'r', time, test_eval,'m')
-        plt.plot(train_eval,'b', val_eval,'r', test_eval,'m')
+        plt.plot(train_eval,'b', val_eval,'r', test_eval,'g')
         #plt.legend()
         plt.xlabel('Iterations')
         plt.ylabel('Accuracy')
@@ -141,5 +126,3 @@ class build_train:
         plt.show()
 
         ############# END OF ACCURACY PLOT ################################
-
-
