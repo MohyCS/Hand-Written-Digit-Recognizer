@@ -23,4 +23,8 @@ Max Train: 0.962
 Max Validation: 0.956
 Max Test: 0.97
 
+10,000 Iterations, Batch Size 100
+Max Train: 0.98
+Max Validation: 0.97
+Max Test: 0.98
 
