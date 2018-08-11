@@ -2,7 +2,7 @@
 
 Extra Credit:
 
-
+ALL BELOW HAVE GRADIENT DESCENT OPTIMIZER SET T0 1.0
 1,000 Iterations
 1,000 Batch Size
 Max Train: 0.94
