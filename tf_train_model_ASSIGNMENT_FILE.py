@@ -81,10 +81,10 @@ class build_train:
         ############## YOUR TRAINING LOOP CODE GOES HERE #############################################################
         ############## YOUR TRAINING LOOP CODE GOES HERE #############################################################
 
-	train_eval = []
-	val_eval = []
-	test_eval = []
-	
+        train_eval = []
+        val_eval = []
+        test_eval = []
+        
 
 
 
@@ -104,22 +104,22 @@ class build_train:
             if i % 100 == 1:
                 print('Accuracy train:')
                 batch_xs, batch_ys = mnist.train.next_batch(100) 
-		out1 = sess.run(accuracy, feed_dict={x:batch_xs, y_:batch_ys})
-		train_eval.append(out1)
-		print(out1)
+                out1 = sess.run(accuracy, feed_dict={x:batch_xs, y_:batch_ys})
+                train_eval.append(out1)
+                print(out1)
                 
                 print('Accuracy Validation:')
                 batch_xs, batch_ys = mnist.validation.next_batch(100) 
-		out2 = sess.run(accuracy, feed_dict={x:batch_xs, y_:batch_ys})
-		val_eval.append(out2)
-		print(out2)
+                out2 = sess.run(accuracy, feed_dict={x:batch_xs, y_:batch_ys})
+                val_eval.append(out2)
+                print(out2)
 
                 print('Accuracy Test:')
                 batch_xs, batch_ys = mnist.test.next_batch(100)
                 out3 = sess.run(accuracy, feed_dict={x:batch_xs, y_:batch_ys})             
-		test_eval.append(out3)
-		print(out3)
-	
+                test_eval.append(out3)
+                print(out3)
+        
         ############# END OF TRAINING SESSION ##############################
 
         ############# SAVE MODEL ###########################################
@@ -131,14 +131,14 @@ class build_train:
         ############# OUTPUT ACCURACY PLOT ################################
 
 
-	#add a legend
-	#plt.plot(time, train_eval,'b', time, val_eval,'r', time, test_eval,'m')
-	plt.plot(train_eval,'b', val_eval,'r', test_eval,'m')
-	#plt.legend()
-	plt.xlabel('Iterations')
-	plt.ylabel('Accuracy')
-	plt.title('Training Accuracy Evaluation')
-	plt.show()
+        #add a legend
+        #plt.plot(time, train_eval,'b', time, val_eval,'r', time, test_eval,'m')
+        plt.plot(train_eval,'b', val_eval,'r', test_eval,'m')
+        #plt.legend()
+        plt.xlabel('Iterations')
+        plt.ylabel('Accuracy')
+        plt.title('Training Accuracy Evaluation')
+        plt.show()
 
         ############# END OF ACCURACY PLOT ################################
 
