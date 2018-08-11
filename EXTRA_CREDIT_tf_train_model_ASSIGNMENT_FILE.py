@@ -25,7 +25,19 @@ class build_train:
         y_ = tf.placeholder(data_type, array_shape, name='ph_y_')
         '''
         # OUTPUT VECTOR y MUST BE LENGTH 10, EACH OUTPUT NEURON CORRESPONDS TO A DIGIT 0-9
-        ################### YOUR MODEL GOES HERE ######################################################################
+       
+	x = tf.placeholder(tf.float32, shape=[None, 784])
+	y_ = tf.placeholder(tf.float32, shape=[None, 10])
+
+	W = tf.Variable(tf.zeros([784,10]))
+	b = tf.Variable(tf.zeros([10]))
+
+	y = tf.matmul(x,W) + b
+
+	cross_entropy = tf.reduce_mean(
+		tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y))
+
+ ################### YOUR MODEL GOES HERE ######################################################################
         ################### YOUR MODEL GOES HERE ######################################################################
         ################### YOUR MODEL GOES HERE ######################################################################
         ################### YOUR MODEL GOES HERE ######################################################################
@@ -41,12 +53,16 @@ class build_train:
         accuracy = tf.reduce_mean(tf.cast(prediction, tf.float32), name='op_accuracy')
         '''
         ############## YOUR LOSS AND ACCURACY FUNCTIONS GO HERE #######################################################
-        ############## YOUR LOSS AND ACCURACY FUNCTIONS GO HERE #######################################################
-        ############## YOUR LOSS AND ACCURACY FUNCTIONS GO HERE #######################################################
-        ############## YOUR LOSS AND ACCURACY FUNCTIONS GO HERE #######################################################
-        ############## YOUR LOSS AND ACCURACY FUNCTIONS GO HERE #######################################################
+	correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
+	accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+	print(accuracy.eval(feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
 
         ############# END OF NEURAL NETWORK MODEL ##########################
+
+
+	train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
+
+
 
         ############# CONSTRUCT TRAINING FUNCTION ##########################
 
@@ -65,13 +81,11 @@ class build_train:
         sess.run(tf.global_variables_initializer())                         # DO NOT EDIT
 
         ############## YOUR TRAINING LOOP CODE GOES HERE #############################################################
-        ############## YOUR TRAINING LOOP CODE GOES HERE #############################################################
-        ############## YOUR TRAINING LOOP CODE GOES HERE #############################################################
-        ############## YOUR TRAINING LOOP CODE GOES HERE #############################################################
-        ############## YOUR TRAINING LOOP CODE GOES HERE #############################################################
-        ############## YOUR TRAINING LOOP CODE GOES HERE #############################################################
+	for _ in range(1000):
+		batch = mnist.train.next_batch(100)
+		train_step.run(feed_dict={x: batch[0], y_: batch[1]})
+	
 
-        ############# END OF TRAINING SESSION ##############################
 
         ############# SAVE MODEL ###########################################
 
