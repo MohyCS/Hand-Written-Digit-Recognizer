@@ -84,23 +84,23 @@ class build_train:
 
         for i in range(0,1000): #for report do like 1000, higher than this doesnt help
             print('Train Iteration' + str(i))
-            batch_xs, batch_ys = mnist.train.next_batch(100)
+            batch_xs, batch_ys = mnist.train.next_batch(10000)
             sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
             if i % 50 == 1:
                 print('Accuracy train:')
-                batch_xs, batch_ys = mnist.train.next_batch(100) 
+                batch_xs, batch_ys = mnist.train.next_batch(10) 
                 out1 = sess.run(accuracy, feed_dict={x:batch_xs, y_:batch_ys})
                 train_eval.append(out1)
                 print(out1)
                 
                 print('Accuracy Validation:')
-                batch_xs, batch_ys = mnist.validation.next_batch(100) 
+                batch_xs, batch_ys = mnist.validation.next_batch(10) 
                 out2 = sess.run(accuracy, feed_dict={x:batch_xs, y_:batch_ys})
                 val_eval.append(out2)
                 print(out2)
 
                 print('Accuracy Test:')
-                batch_xs, batch_ys = mnist.test.next_batch(100)
+                batch_xs, batch_ys = mnist.test.next_batch(10)
                 out3 = sess.run(accuracy, feed_dict={x:batch_xs, y_:batch_ys})             
                 test_eval.append(out3)
                 print(out3)
