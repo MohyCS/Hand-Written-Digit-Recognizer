@@ -1,5 +1,8 @@
+#to run the Extra credit 
+#1) Comment out the first import
+#2) Uncomment out the second line
 import tf_train_model_ASSIGNMENT_FILE as tm
-
+#import EXTRA_CREDIT_tf_train_model_ASSIGNMENT_FILE.py as tm
 
 model=8
 
