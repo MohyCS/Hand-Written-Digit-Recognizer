@@ -76,7 +76,6 @@ class build_train:
         accuracy = tf.reduce_mean(tf.cast(prediction, tf.float32), name='op_accuracy')
         '''
         cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y_conv), name='op_loss')
-        train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
         correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1), name='op_pred')
         accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32), name='op_accuracy')
 
@@ -89,6 +88,7 @@ class build_train:
 
         # TRAINING FUNCTION SHOULD USE YOUR LOSS FUNCTION TO OPTIMIZE THE MODEL PARAMETERS
         #train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy, name='op_train')
+        train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
 
         ############## YOUR TRAINING FUNCTION GOES HERE ###############################################################
         ############## YOUR TRAINING FUNCTION GOES HERE ###############################################################
