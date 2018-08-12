@@ -110,10 +110,22 @@ class build_train:
         ############## YOUR TRAINING LOOP CODE GOES HERE #############################################################
         ############## YOUR TRAINING LOOP CODE GOES HERE #############################################################
 
-        for i in range(20000):
+        train_eval = []
+        test_eval = []
+
+        time = []
+
+        for i in range(1000): #should be 20,000
             batch = mnist.train.next_batch(50)
             if i%100 == 0:
                 train_accuracy = accuracy.eval(feed_dict={x:batch[0], y_: batch[1], keep_prob: 1.0})
+                train_eval.append(train_accuracy)
+
+                test_accuracy = accuracy.eval(feed_dict={x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0})
+                test_eval.append(test_accuracy)
+
+                time.append(i)
+
             print("step %d, training accuracy %g"%(i, train_accuracy))
             train_step.run(feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
 
@@ -131,7 +143,7 @@ class build_train:
 
         #add a legend
         #plt.plot(time, train_eval,'b', time, val_eval,'r', time, test_eval,'m')
-        plt.plot(train_eval,'b', val_eval,'r', test_eval,'g')
+        plt.plot(time, train_eval, 'b', time, test_eval, 'g')
         #plt.legend()
         plt.xlabel('Iterations')
         plt.ylabel('Accuracy')
@@ -156,8 +168,3 @@ def conv2d(x, W):
 def max_pool_2x2(x):
   return tf.nn.max_pool(x, ksize=[1, 2, 2, 1],
                           strides=[1, 2, 2, 1], padding='SAME')
-
-#gang gang Neelesh Kumar is the GOAT
-
-
-
