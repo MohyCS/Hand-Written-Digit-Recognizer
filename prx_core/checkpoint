@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/mejikan/prx_core_ws/src/prx_core/tf_model-8"
+all_model_checkpoint_paths: "/home/mejikan/prx_core_ws/src/prx_core/tf_model-8"

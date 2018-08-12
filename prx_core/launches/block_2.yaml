@@ -1,0 +1,27 @@
+type: obstacle
+root_configuration:
+  position: [0.0, 0.0, 0.0]
+  orientation: [0, 0, 0, 1]
+geometries:
+  -
+    name: body
+    collision_geometry: 
+      # type: box
+      # material: black 
+      # dims: [1, 1, 1]
+      material: white
+      type: mesh
+      filename: 0_0.obj
+    visualization_geometry: 
+      # type: box
+      # material: black 
+      # dims: [1, 1, 1]
+      material: white
+      type: mesh
+      filename: 0_0.obj
+      local_transform:
+        position: [0,0,0]
+        orientation: [0,0,-0.7071,0.7071]
+    config:
+      position: [0, 0, 0]
+      orientation: [0, 0, 0, 1]

@@ -1,0 +1,2 @@
+int32 gripper_index
+int32 gripper_mode

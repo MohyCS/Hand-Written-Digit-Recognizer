@@ -1,0 +1,7 @@
+simulator:
+  type: default_simulator_t
+  collision_detection: true
+  collision_response: true
+  simulation_step: 0.02
+  collision_checker:
+    type: pqp_collision_checker_t

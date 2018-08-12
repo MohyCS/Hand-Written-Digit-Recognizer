@@ -1,0 +1,20 @@
+lights:
+  default:
+    position: [0.0, 0.0, 10000.0]
+    direction: [0.0, 0.0, -1.0]
+    ambient: [1.0,1.0,1.0, 1.0]
+    diffuse: [1.0,1.0,1.0, 1.0]
+    specular: [1.0,1.0,1.0, 1.0]
+  default2:
+    position: [10000.0, 10000.0, 10000.0]
+    direction: [-1.0, -1.0, -1.0]
+    ambient: [1.0,1.0,1.0, 1.0]
+    diffuse: [1.0,1.0,1.0, 1.0]
+    specular: [1.0,1.0,1.0, 1.0]
+  default3:
+    position: [-10000.0, -10000.0, -10000.0]
+    direction: [1.0, 1.0, 1.0]
+    ambient: [1.0,1.0,1.0, 1.0]
+    diffuse: [1.0,1.0,1.0, 1.0]
+    specular: [1.0,1.0,1.0, 1.0]
+    

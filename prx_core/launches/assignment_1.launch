@@ -1,0 +1,40 @@
+
+<launch>
+<arg name="env" default="absolute/path/to/maze/file"/>
+
+<node name="utilities" pkg="prx_core" type="util_test" required="true" output="screen" launch-prefix=""/>
+
+<rosparam>
+utilities:
+  application:
+    type: demo_application_t
+  graph_size: 5
+</rosparam>
+
+<rosparam command="load" ns="utilities/simulator/subsystems/disk">
+geometries:
+ -
+   name: ball
+   collision_geometry:
+     type: sphere
+     radius: 0.3
+     material: red
+</rosparam>
+<rosparam command="load" ns="utilities/simulator/subsystems/goal">
+geometries:
+ -
+   name: ball
+   collision_geometry:
+     type: sphere
+     radius: 0.1
+     material: green
+</rosparam>
+
+<rosparam command="load" ns="prx" subst_value="True" >
+parameter_mutex: true
+env_file: $(arg env)
+block_filename: block.yaml
+</rosparam>
+
+<include file="$(find prx_core)/launches/visualization/visualization.launch"/>
+</launch>

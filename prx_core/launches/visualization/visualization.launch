@@ -1,0 +1,17 @@
+<launch>
+    <rosparam command="load" file="$(find prx_core)/launches/visualization/OSG_single_window.yaml"/>
+
+    <rosparam ns="/visualization/viewer/scene/texture">
+      -
+        terrain:
+          terrain_image: "terrain/grid.jpg"
+          terrain_plane: {x: 1000, y: 1000, z: 0, divisor: 25}
+    </rosparam>
+
+    <rosparam command="load" ns="/visualization/viewer/scene" file="$(find prx_core)/launches/visualization/basic_light.yaml"/>
+    <rosparam command="load" ns="/visualization/viewer/scene" file="$(find prx_core)/launches/visualization/basic_materials.yaml"/>
+    
+    <node name="visualization" pkg="prx_core" type="vis_node" clear_params="true"
+	  required="true" launch-prefix="" output="screen" args="visualization"/>
+
+</launch>

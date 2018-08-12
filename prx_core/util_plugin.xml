@@ -1,0 +1,128 @@
+<library path="lib/libprx_core">
+	<!-- Distance Functions -->
+    <class name="default_euclidean_t"
+        type="prx::util::default_euclidean_t"
+        base_class_type="prx::util::distance_function_t">
+        <description>
+            Default euclidean distance as defined by space_t.
+        </description>        
+    </class>
+    <class name="manhattan_distance_t"
+        type="prx::util::manhattan_distance_t"
+        base_class_type="prx::util::distance_function_t">
+        <description>
+            L1 distance (Manhattan distance)
+        </description>        
+    </class>
+    <class name="l_infinite_norm_t"
+        type="prx::util::l_infinite_norm_t"
+        base_class_type="prx::util::distance_function_t">
+        <description>
+            L-infinite distance.
+        </description>        
+    </class>
+    <!-- Distance Metrics -->
+    <class name="linear_distance_metric_t"
+        type="prx::util::linear_distance_metric_t"
+        base_class_type="prx::util::distance_metric_t">
+        <description>
+            Simple linear search proximity metric.
+        </description>        
+    </class>
+    <class name="graph_distance_metric_t"
+        type="prx::util::graph_distance_metric_t"
+        base_class_type="prx::util::distance_metric_t">
+        <description>
+            Creates a neighborhood graph for distance queries.
+        </description>        
+    </class>
+    <!-- Goals -->          
+    <class name="goal_state_t"
+        type="prx::util::goal_state_t"
+        base_class_type="prx::util::goal_t">
+        <description>
+            Simple goal with a state that we want to reach.
+        </description>        
+    </class>    
+    
+    <class name="multiple_goal_states_t"
+        type="prx::util::multiple_goal_states_t"
+        base_class_type="prx::util::goal_t">
+        <description>
+            Multiple goal states.
+        </description>        
+    </class>   
+    
+    <class name="radial_goal_region_t"
+        type="prx::util::radial_goal_region_t"
+        base_class_type="prx::util::goal_t">
+        <description>
+            A goal region defined by a point and radius.
+        </description>        
+    </class>   
+    <class name="bounded_goal_region_t"
+        type="prx::util::bounded_goal_region_t"
+        base_class_type="prx::util::goal_t">
+        <description>
+            A goal region that is bounded.
+        </description>        
+    </class>   
+    <class name="goal_plane_t"
+        type="prx::util::goal_plane_t"
+        base_class_type="prx::util::goal_t">
+        <description>
+            A goal that reasons about planes
+        </description>        
+    </class> 
+    <class name="aggregate_goal_t"
+        type="prx::util::aggregate_goal_t"
+        base_class_type="prx::util::goal_t">
+        <description>
+            A goal container class for satisfying multiple goals
+        </description>        
+    </class>
+    <!-- Util Applications -->
+
+    <class name="util_application_t"
+        type="prx::util::util_application_t"
+        base_class_type="prx::util::util_application_t">
+        <description>
+            A base utilities application.
+        </description>
+    </class>
+
+    <class name="demo_application_t"
+        type="prx::util::demo_application_t"
+        base_class_type="prx::util::util_application_t">
+        <description>
+            A demo application.
+        </description>
+    </class>
+
+    <!-- Mappings -->
+
+    <class name="obstacle_mapping_t"
+        type="prx::util::obstacle_mapping_t"
+        base_class_type="prx::util::mapping_function_t">
+        <description>
+            Mapping for hiding a system while allowing collisions with it.
+        </description>        
+    </class>        
+    
+    <class name="full_mapping_t"
+        type="prx::util::full_mapping_t"
+        base_class_type="prx::util::mapping_function_t">
+        <description>
+            Copies the space information into embedded space.
+        </description>        
+    </class>    
+    
+    <class name="hide_mapping_t"
+        type="prx::util::hide_mapping_t"
+        base_class_type="prx::util::mapping_function_t">
+        <description>
+            Mapping for hiding a system.
+        </description>        
+    </class> 
+    
+</library>
