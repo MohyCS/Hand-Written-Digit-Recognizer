@@ -119,11 +119,9 @@ class build_train:
             batch = mnist.train.next_batch(50)
             if i%100 == 0:
 
-                batch = mnist.train.next_batch(50)
                 train_accuracy = accuracy.eval(feed_dict={x:batch[0], y_: batch[1], keep_prob: 1.0})
                 train_eval.append(train_accuracy)
 
-                batch = mnist.train.next_batch(50)
                 test_accuracy = accuracy.eval(feed_dict={x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0})
                 test_eval.append(test_accuracy)
 
