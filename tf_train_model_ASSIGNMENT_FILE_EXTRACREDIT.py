@@ -75,10 +75,10 @@ class build_train:
         EXAMPLE OF NAMING ACCURACY FUNCTION:
         accuracy = tf.reduce_mean(tf.cast(prediction, tf.float32), name='op_accuracy')
         '''
-        cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y_conv))
+        cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y_conv), name='op_loss')
         train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
-        correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1))
-        accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+        correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1), name='op_pred')
+        accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32), name='op_accuracy')
 
         
         #print(accuracy.eval(feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
