@@ -115,7 +115,7 @@ class build_train:
 
         time = []
 
-        for i in range(1000): #should be 20,000
+        for i in range(20000): #should be 20,000
             batch = mnist.train.next_batch(50)
             if i%100 == 0:
 
