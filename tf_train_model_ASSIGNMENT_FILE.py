@@ -11,7 +11,7 @@ class build_train:
         self.save_dir = self.rootPath + '/tf_model'                             # DO NOT EDIT
 
     def build_train_network(self, network):
-
+        print "Lets do dis"
         ############### MNIST DATA #########################################
         mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)      # DO NOT EDIT
         ############### END OF MNIST DATA ##################################
@@ -50,13 +50,15 @@ class build_train:
         cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(y), reduction_indices = [1]), name='op_loss')
         correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1), name='op_pred')
         accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32), name='op_accuracy')
+        
+        #print(accuracy.eval(feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
 
         ############# END OF NEURAL NETWORK MODEL ##########################
 
         ############# CONSTRUCT TRAINING FUNCTION ##########################
 
         # TRAINING FUNCTION SHOULD USE YOUR LOSS FUNCTION TO OPTIMIZE THE MODEL PARAMETERS
-        train_step = tf.train.GradientDescentOptimizer(1.0).minimize(cross_entropy, name='op_train')
+        train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy, name='op_train')
 
         ############## YOUR TRAINING FUNCTION GOES HERE ###############################################################
         ############## YOUR TRAINING FUNCTION GOES HERE ###############################################################
@@ -81,30 +83,34 @@ class build_train:
         train_eval = []
         val_eval = []
         test_eval = []
-
+        time = []
         for i in range(0,1000): #for report do like 1000, higher than this doesnt help
-            print('Train Iteration' + str(i))
-            batch_xs, batch_ys = mnist.train.next_batch(10000)
+            #print('Train Iteration' + str(i))
+            batch_xs, batch_ys = mnist.train.next_batch(500)
             sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
-            if i % 50 == 1:
-                print('Accuracy train:')
-                batch_xs, batch_ys = mnist.train.next_batch(10) 
+            if i % 11 == 0:
+                #print('Accuracy train:')
+                batch_xs, batch_ys = mnist.train.next_batch(500) 
                 out1 = sess.run(accuracy, feed_dict={x:batch_xs, y_:batch_ys})
                 train_eval.append(out1)
-                print(out1)
+                #print(out1)
                 
-                print('Accuracy Validation:')
-                batch_xs, batch_ys = mnist.validation.next_batch(10) 
+                #print('Accuracy Validation:')
+                batch_xs, batch_ys = mnist.validation.next_batch(500) 
                 out2 = sess.run(accuracy, feed_dict={x:batch_xs, y_:batch_ys})
                 val_eval.append(out2)
-                print(out2)
+                #print(out2)
 
-                print('Accuracy Test:')
-                batch_xs, batch_ys = mnist.test.next_batch(10)
+                #print('Accuracy Test:')
+                batch_xs, batch_ys = mnist.test.next_batch(500)
                 out3 = sess.run(accuracy, feed_dict={x:batch_xs, y_:batch_ys})             
                 test_eval.append(out3)
-                print(out3)
-        
+                #print(out3)
+                time.append(i)
+
+        print "Max Train: ", max(train_eval), " : at time: ", train_eval.index(max(train_eval))
+        print "Max Valid: ", max(val_eval), " : at time: ", val_eval.index(max(val_eval))
+        print "Max  Test: ", max(test_eval), " : at time: ", test_eval.index(max(test_eval))
         ############# END OF TRAINING SESSION ##############################
 
         ############# SAVE MODEL ###########################################
@@ -117,8 +123,9 @@ class build_train:
 
 
         #add a legend
-        #plt.plot(time, train_eval,'b', time, val_eval,'r', time, test_eval,'m')
-        plt.plot(train_eval,'b', val_eval,'r', test_eval,'g')
+        #plt.plot(time, train_eval,'b')
+        plt.plot(time, train_eval, 'b', time, val_eval, 'r', time, test_eval, 'g')
+        #plt.plot(train_eval,'b', val_eval,'r', test_eval,'g')
         #plt.legend()
         plt.xlabel('Iterations')
         plt.ylabel('Accuracy')
