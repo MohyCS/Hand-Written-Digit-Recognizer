@@ -12,7 +12,7 @@ class build_train:
 
 
     def build_train_network(self, network):
-        print "Lets do dis"
+        #print "Lets do dis"
         ############### MNIST DATA #########################################
         mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)      # DO NOT EDIT
         ############### END OF MNIST DATA ##################################
@@ -39,8 +39,8 @@ class build_train:
         W1 = tf.Variable(tf.zeros([784, 10]), name ='W1')
         b1 = tf.Variable(tf.zeros([10]), name='b1')
 
-        #y = tf.nn.softmax(tf.matmul(x, W1) + b1, name='op_y')
-        y = tf.matmul(x,W1) + b1
+        y = tf.nn.softmax(tf.matmul(x, W1) + b1, name='op_y')
+        #y = tf.matmul(x,W1) + b1
 
         W_conv1 = weight_variable([5, 5, 1, 32])
         b_conv1 = bias_variable([32])
