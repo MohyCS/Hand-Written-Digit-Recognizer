@@ -6,6 +6,8 @@ Files:
 
 tf_train_model_ASSIGNMENT_FILE.py -> contains the model, loss and accuracy functions, training functions and loops, and plots model
                                      accuracy to measure anticipated performance.
+
+
 tf_evaluate_model_code.py         -> evaluates/tests model with new handwritten digit images to see true testing accuracy
 
 Methodology:
